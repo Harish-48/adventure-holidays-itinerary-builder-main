@@ -1,0 +1,463 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Adventure Holidays Design System
+   Primary: Yellow/Gold (#FDB913)
+   Secondary: Dark Navy (#0A1828)
+   All colors in HSL format
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 50% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 50% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 50% 10%;
+
+    /* Yellow/Gold Primary - #FDB913 */
+    --primary: 43 98% 53%;
+    --primary-foreground: 210 50% 10%;
+
+    /* Dark Navy Secondary - #0A1828 */
+    --secondary: 213 57% 10%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 20% 40%;
+
+    --accent: 43 98% 53%;
+    --accent-foreground: 210 50% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 43 98% 53%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 43 98% 53%;
+    --sidebar-primary-foreground: 210 50% 10%;
+    --sidebar-accent: 210 20% 96%;
+    --sidebar-accent-foreground: 210 50% 10%;
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: 43 98% 53%;
+
+    /* Custom tokens for Adventure Holidays */
+    --ah-yellow: 43 98% 53%;
+    --ah-navy: 213 57% 10%;
+    --ah-navy-light: 213 40% 20%;
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    --info: 217 91% 60%;
+  }
+
+  .dark {
+    --background: 213 57% 10%;
+    --foreground: 0 0% 95%;
+
+    --card: 213 50% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 213 50% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 43 98% 53%;
+    --primary-foreground: 210 50% 10%;
+
+    --secondary: 213 40% 20%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 213 40% 20%;
+    --muted-foreground: 210 20% 60%;
+
+    --accent: 43 98% 53%;
+    --accent-foreground: 210 50% 10%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 213 40% 20%;
+    --input: 213 40% 20%;
+    --ring: 43 98% 53%;
+
+    --sidebar-background: 213 57% 10%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 43 98% 53%;
+    --sidebar-primary-foreground: 210 50% 10%;
+    --sidebar-accent: 213 40% 20%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 213 40% 20%;
+    --sidebar-ring: 43 98% 53%;
+
+    --ah-yellow: 43 98% 53%;
+    --ah-navy: 213 57% 10%;
+    --ah-navy-light: 213 40% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-poppins;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-poppins font-semibold;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Chrome, Safari, Edge */
+  .no-spinner::-webkit-outer-spin-button,
+  .no-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  .no-spinner {
+    -moz-appearance: textfield;
+  }
+}
+
+/* ============================================================
+   PDF EXPORT OVERRIDES
+   These styles ONLY apply when the pdf-export-mode class is
+   added to the off-screen clone during PDF generation.
+   The live browser preview is never affected.
+   ============================================================ */
+
+.pdf-export-mode {
+  /* Root container: fixed width, no responsive reflow */
+  width: 800px !important;
+  max-width: 800px !important;
+  min-width: 800px !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Force all sections to full width */
+.pdf-export-mode section,
+.pdf-export-mode footer,
+.pdf-export-mode>div {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* ---- GRID OVERRIDES ---- */
+/* Force all responsive grids to 2-column with fixed widths */
+.pdf-export-mode .grid {
+  display: grid !important;
+  gap: 16px !important;
+}
+
+.pdf-export-mode .grid.grid-cols-1.md\:grid-cols-2,
+.pdf-export-mode .grid.sm\:grid-cols-2 {
+  grid-template-columns: 1fr 1fr !important;
+}
+
+.pdf-export-mode .grid .md\:col-span-2 {
+  grid-column: span 2 / span 2 !important;
+}
+
+/* ---- FLEX OVERRIDES ---- */
+/* Force md:flex-row layouts to be row */
+.pdf-export-mode .flex-col.md\:flex-row,
+.pdf-export-mode .flex.flex-col.md\:flex-row {
+  flex-direction: row !important;
+}
+
+/* Disable flex wrapping everywhere */
+.pdf-export-mode .flex,
+.pdf-export-mode [class*="flex"] {
+  flex-wrap: nowrap !important;
+}
+
+/* Flex children: prevent shrinking */
+.pdf-export-mode .flex-1 {
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+}
+
+/* ---- TYPOGRAPHY ---- */
+/* Lock font sizes to px to prevent scaling issues */
+.pdf-export-mode h1 {
+  font-size: 32px !important;
+  line-height: 40px !important;
+}
+
+.pdf-export-mode h2 {
+  font-size: 24px !important;
+  line-height: 32px !important;
+}
+
+.pdf-export-mode h3 {
+  font-size: 20px !important;
+  line-height: 28px !important;
+}
+
+.pdf-export-mode p,
+.pdf-export-mode span,
+.pdf-export-mode li {
+  line-height: 1.5 !important;
+}
+
+.pdf-export-mode .text-xs {
+  font-size: 12px !important;
+  line-height: 16px !important;
+}
+
+.pdf-export-mode .text-sm {
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+.pdf-export-mode .text-lg {
+  font-size: 18px !important;
+  line-height: 28px !important;
+}
+
+.pdf-export-mode .text-xl {
+  font-size: 20px !important;
+  line-height: 28px !important;
+}
+
+.pdf-export-mode .text-2xl {
+  font-size: 24px !important;
+  line-height: 32px !important;
+}
+
+.pdf-export-mode .text-3xl {
+  font-size: 30px !important;
+  line-height: 36px !important;
+}
+
+.pdf-export-mode .text-4xl {
+  font-size: 36px !important;
+  line-height: 44px !important;
+}
+
+.pdf-export-mode .text-5xl {
+  font-size: 48px !important;
+  line-height: 56px !important;
+}
+
+.pdf-export-mode .text-7xl {
+  font-size: 72px !important;
+  line-height: 80px !important;
+}
+
+.pdf-export-mode .text-9xl {
+  font-size: 128px !important;
+  line-height: 128px !important;
+}
+
+/* ---- IMAGE CONSTRAINTS ---- */
+.pdf-export-mode img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+/* Logo fixed size */
+.pdf-export-mode img[alt="Company Logo"] {
+  width: 320px !important;
+  height: 160px !important;
+  object-fit: contain !important;
+}
+
+/* About image fixed */
+.pdf-export-mode img[alt="About us"] {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+/* ---- SPACING & PADDING ---- */
+/* Fixed section padding */
+.pdf-export-mode section {
+  padding-top: 48px !important;
+  padding-bottom: 48px !important;
+  padding-left: 32px !important;
+  padding-right: 32px !important;
+}
+
+.pdf-export-mode footer {
+  padding: 32px !important;
+}
+
+/* Fixed spacing for stacked elements */
+.pdf-export-mode .space-y-8>*+* {
+  margin-top: 32px !important;
+}
+
+.pdf-export-mode .space-y-6>*+* {
+  margin-top: 24px !important;
+}
+
+.pdf-export-mode .space-y-2>*+* {
+  margin-top: 8px !important;
+}
+
+/* Card padding */
+.pdf-export-mode .border.border-primary {
+  padding: 24px !important;
+}
+
+.pdf-export-mode .border.border-primary .p-3 {
+  padding: 12px !important;
+}
+
+/* ---- OVERFLOW CONTROL ---- */
+.pdf-export-mode * {
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+/* Prevent long text from expanding containers */
+.pdf-export-mode .max-w-xs,
+.pdf-export-mode .max-w-md,
+.pdf-export-mode .max-w-xl,
+.pdf-export-mode .max-w-3xl,
+.pdf-export-mode .max-w-4xl,
+.pdf-export-mode .max-w-6xl {
+  max-width: 100% !important;
+}
+
+/* ---- GOOGLE RATING SECTION ---- */
+/* Ensure the rating number and text stay side by side */
+.pdf-export-mode .text-9xl {
+  font-size: 128px !important;
+  line-height: 1 !important;
+}
+
+/* ---- NEGATIVE MARGIN RESET ---- */
+.pdf-export-mode .absolute.-top-3 {
+  top: -12px !important;
+}
+
+/* ---- CONTAINER MAX-WIDTH RESET ---- */
+/* Strip auto margins in export mode — centering causes right-shift in PDF */
+.pdf-export-mode .mx-auto {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Ensure no child uses transform-based centering */
+.pdf-export-mode [style*="transform"] {
+  transform: none !important;
+}
+
+/* Force all direct children to start at left edge */
+.pdf-export-mode>* {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* ---- DAY PLAN CARDS ---- */
+.pdf-export-mode .rounded-lg.p-6.border-2 {
+  padding: 24px !important;
+  margin-bottom: 16px !important;
+}
+
+.pdf-export-mode .ml-16 {
+  margin-left: 64px !important;
+}
+
+/* ---- TERMS & CANCELLATION ---- */
+.pdf-export-mode .mb-8.pl-4.border-l-4 {
+  margin-bottom: 32px !important;
+  padding-left: 16px !important;
+}
+
+/* ---- FOOTER CONTACT GRID ---- */
+.pdf-export-mode footer .grid {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+}
+
+.pdf-export-mode footer .border.border-primary {
+  padding: 16px !important;
+}
+
+/* ---- SVG ICONS ---- */
+.pdf-export-mode svg {
+  width: auto !important;
+  height: auto !important;
+  flex-shrink: 0 !important;
+}
+
+/* Star icons in rating */
+.pdf-export-mode .w-8.h-8 {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+/* Small icons */
+.pdf-export-mode .w-4.h-4 {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.pdf-export-mode .w-6.h-6 {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+/* Day number circles */
+.pdf-export-mode .w-12.h-12 {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+}
+
+/* ---- CLIENT NAME: prevent single-char line wrap ---- */
+.pdf-export-mode .client-name {
+  white-space: nowrap !important;
+  overflow: visible !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  font-size: 36px !important;
+  line-height: 44px !important;
+  display: inline-block !important;
+  max-width: none !important;
+  width: auto !important;
+}
+
+/* Give the client-name wrapper a little extra breathing room */
+.pdf-export-mode .inline-block {
+  max-width: 100% !important;
+  width: auto !important;
+}
